@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone repository') {
+            steps {
+                git 'https://github.com/AGBullet/HomeWorkScriptsMLops.git'
+            }
+        }
+        stage('Load data') {
+            steps {
+                sh 'sudo python3 /home/bullet/HW2/load.py'
+            }
+        }
+        stage('Train model') {
+            steps {
+                sh 'sudo python3 /home/bullet/HW2/study.py'
+            }
+        }
+        stage('Test model') {
+            steps {
+                sh 'sudo python3 /home/bullet/HW2/test.py'
+            }
+        }
+    }
+}
